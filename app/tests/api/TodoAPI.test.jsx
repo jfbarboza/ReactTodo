@@ -80,6 +80,21 @@ describe('TodoAPI', ()=>{
       var filteredTodos = TodoAPI.filterTodos(todos, false, '');
       expect(filteredTodos.length).toBe(1);
     });
+    it('should sort by completed status', ()=>{
+      var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      expect(filteredTodos[0].completed).toBe(false);
+    });
+
+    it('should return all todos if searchText is empty', ()=>{
+      var filteredTodos = TodoAPI.filterTodos(todos, true, '');
+      expect(filteredTodos.length).toBe(3);
+    });
+
+    it('should return the expected todo with searchText', ()=>{
+      var filteredTodos = TodoAPI.filterTodos(todos, true, 'some');
+      expect(filteredTodos[0].id).toBe(1);
+    });
+
   });
 
 });
